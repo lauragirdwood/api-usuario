@@ -1,5 +1,7 @@
 package com.itexperts.projeto.userapi.model;
 
+import com.itexperts.projeto.userapi.dto.UserRequestDTO;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -13,16 +15,30 @@ public class User implements Serializable {
     private Long id;
     @Column(name = "name")
     private String name;
-    //@Column(name = "last_name")
+    @Column(name = "last_name")
     private String lastName;
 
     public User() {
+    }
+
+    public User(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public User(String name, String lastName) {
+        this.name = name;
+        this.lastName = lastName;
     }
 
     public User(Long id, String name, String lastName) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
+    }
+
+    public User(UserRequestDTO userRequestDTO) {
+        this.name = userRequestDTO.getName();
+        this.lastName = userRequestDTO.getLastName();
     }
 
     public Long getId() {
